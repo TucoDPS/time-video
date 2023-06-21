@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="estilera.css">
+	<title>Pua Sem Acento</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+	<div class="pua">
+		<a href="https://www.instagram.com/puasemacento/"><img src="pua.svg" alt=""></a>
+	</div>
+
+	<div class="relogio">
+		<div class="hour">
+			<div class="hr" id="hr"></div>
+		</div>
+		<div class="min">
+			<div class="mn" id="mn"></div>
+		</div>
+		<div class="sec">
+			<div class="sc" id="sc"></div>
+		</div>
+	</div>
+
+	<div class="container">
+		<script type="text/javascript">
+
+			const deg = 6;
+			const hr = document.querySelector('#hr');
+			const mn = document.querySelector('#mn');
+			const sc = document.querySelector('#sc');
+
+			setInterval(() => {
+				let day = new Date();
+				let hh = day.getHours() * 30;
+				let mm = day.getMinutes() * deg;
+				let ss = day.getSeconds() * deg;
+
+				hr.style.transform = `rotateZ(${hh + (mm / 12)}deg)`;
+				mn.style.transform = `rotateZ(${mm}deg)`;
+				sc.style.transform = `rotateZ(${ss}deg)`;
+			});
+
+			const videos = {
+				'10-11': 'VIDEO_ID_1',
+				'11-12': 'VIDEO_ID_2',
+				'12-13': 'VIDEO_ID_3',
+				'13-14': 'VIDEO_ID_4',
+				'15-16': 'VIDEO_ID_5',
+				'16-17': 'VIDEO_ID_6',
+				'17-18': 'VIDEO_ID_7',
+				'18-19': 'VIDEO_ID_8',
+				'19-10': 'yWmQ15jBiVw'
+			};
+
+			const agora = new Date();
+			const hora = agora.getHours();
+			
+			const periodo = getPeriodo(hora);
+			const videoId = videos[periodo];
+
+			if (videoId) {
+				const container = document.querySelector('.container');
+				const player = document.createElement('iframe');
+				player.setAttribute('width', '560');
+				player.setAttribute('height', '315');
+				player.setAttribute('src', `https://www.youtube.com/embed/${videoId}`);
+				player.setAttribute('frameborder', '0');
+				player.setAttribute('allowfullscreen', '');
+				container.appendChild(player);
+			}
+
+			function getPeriodo(hora) {
+				if (hora >= 10 && hora < 11) {
+					return '10-11';
+				} else if (hora >= 11 && hora < 12) {
+					return '11-12';
+				} else if (hora >= 12 && hora < 13) {
+					return '12-13';
+				} else if (hora >= 13 && hora < 14) {
+					return '13-14';
+				} else if (hora >= 15 && hora < 16) {
+					return '15-16';
+				} else if (hora >= 16 && hora < 17) {
+					return '16-17';
+				} else if (hora >= 17 && hora < 18) {
+					return '17-18';
+				} else if (hora >= 18 && hora < 19) {
+					return '18-19';
+				} else if ((hora >= 19 && hora <= 23) || (hora >= 0 && hora < 10)) {
+					return '19-10';
+				} else {
+					return null;
+				}
+			}
+
+		</script>
+	</div>
+</body>
+</html>
